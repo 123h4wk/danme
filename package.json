@@ -6,8 +6,7 @@
   "private": true,
   "author": "123h4wk",
   "scripts": {
-    "format": "prettier --write src/",
-    "lint": "eslint \"src/**/*.js\"",
+    "lint": "standard --fix",
     "dev": "esbuild src/index.js --servedir=public --outdir=public/app --sourcemap --bundle",
     "build": "rm -rf dist && cp -r public dist && esbuild src/index.js --outdir=dist/app --minify --bundle"
   },
@@ -16,7 +15,6 @@
   },
   "devDependencies": {
     "esbuild": "^0.13.2",
-    "eslint": "^7.32.0",
-    "prettier": "^2.4.1"
+    "standard": "^16.0.4"
   }
 }

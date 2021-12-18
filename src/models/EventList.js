@@ -3,20 +3,20 @@
 const Event = require('./Event')
 
 class EventList {
-  constructor(initialEvents = []) {
+  constructor (initialEvents = []) {
     this.items = initialEvents
   }
 
-  add(newEvent) {
+  add (newEvent) {
     const event = newEvent ?? new Event()
     this.items = [...this.items, event]
   }
 
-  setItems(events) {
+  setItems (events) {
     this.items = events
   }
 
-  remove(eventId) {
+  remove (eventId) {
     this.items = this.items.filter((item) => item.id !== eventId)
   }
 }

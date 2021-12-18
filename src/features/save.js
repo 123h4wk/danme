@@ -4,7 +4,7 @@ const Event = require('../models/Event')
 
 const importAsJson = (files, callback, { player, eventList, dungeon }) => {
   const file = files[0]
-  const reader = new FileReader()
+  const reader = new window.FileReader()
   reader.onload = () => {
     try {
       const data = JSON.parse(reader.result)
@@ -52,7 +52,7 @@ const exportAsJson = ({ elementId, player, eventList, dungeon }) => {
     }
   }
 
-  const blob = new Blob([JSON.stringify(result, null, '  ')], {
+  const blob = new window.Blob([JSON.stringify(result, null, '  ')], {
     type: 'application/json'
   })
 

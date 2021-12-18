@@ -252,19 +252,19 @@ const App = ({ attrs }) => {
             !dungeon.logs?.length
               ? null
               : m(
-                  'div.card__section.log',
-                  dungeon.logs.map((log) =>
-                    m('div.log__item', [
-                      m('div.log__item-content', [
-                        m('div.log__item-title', `${log.floor}階`),
-                        m('div', convertNewLineIntoBrTag(log.content))
-                      ]),
-                      m('img.log__item-image[alt=log-icon]', {
-                        src: log.imageSrc
-                      })
-                    ])
-                  )
+                'div.card__section.log',
+                dungeon.logs.map((log) =>
+                  m('div.log__item', [
+                    m('div.log__item-content', [
+                      m('div.log__item-title', `${log.floor}階`),
+                      m('div', convertNewLineIntoBrTag(log.content))
+                    ]),
+                    m('img.log__item-image[alt=log-icon]', {
+                      src: log.imageSrc
+                    })
+                  ])
                 )
+              )
           ])
         ])
       ])

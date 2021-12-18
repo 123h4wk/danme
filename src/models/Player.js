@@ -3,7 +3,7 @@
 const { getAsNumber } = require('../utils')
 
 class Player {
-  constructor(props = {}) {
+  constructor (props = {}) {
     this.name = props.name ?? 'NoName'
     this.hp = props.hp ?? 0
     this.mp = props.mp ?? 0
@@ -11,27 +11,27 @@ class Player {
     this.maxMp = props.mp ?? 100
   }
 
-  setName(val) {
+  setName (val) {
     this.name = String(val)
   }
 
-  setHp(val) {
+  setHp (val) {
     this.hp = getAsNumber(val)
   }
 
-  setMp(val) {
+  setMp (val) {
     this.mp = getAsNumber(val)
   }
 
-  setMaxHp(val) {
+  setMaxHp (val) {
     this.maxHp = getAsNumber(val, 1)
   }
 
-  setMaxMp(val) {
+  setMaxMp (val) {
     this.maxMp = getAsNumber(val, 1)
   }
 
-  fullRecovery() {
+  fullRecovery () {
     this.setHp(this.maxHp)
     this.setMp(this.maxMp)
   }
