@@ -1,4 +1,6 @@
-import { getAsNumber } from '../utils'
+'use strict'
+
+const { getAsNumber } = require('../utils')
 
 class Player {
   constructor(props = {}) {
@@ -35,4 +37,4 @@ class Player {
   }
 }
 
-export default Player
+module.exports = Player

@@ -1,4 +1,6 @@
-import Event from './Event'
+'use strict'
+
+const Event = require('./Event')
 
 class EventList {
   constructor(initialEvents = []) {
@@ -19,4 +21,4 @@ class EventList {
   }
 }
 
-export default EventList
+module.exports = EventList

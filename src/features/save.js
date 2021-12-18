@@ -1,10 +1,8 @@
-import Event from '../models/Event'
+'use strict'
 
-export const importAsJson = (
-  files,
-  callback,
-  { player, eventList, dungeon }
-) => {
+const Event = require('../models/Event')
+
+const importAsJson = (files, callback, { player, eventList, dungeon }) => {
   const file = files[0]
   const reader = new FileReader()
   reader.onload = () => {
@@ -32,7 +30,7 @@ export const importAsJson = (
   reader.readAsText(file)
 }
 
-export const exportAsJson = ({ elementId, player, eventList, dungeon }) => {
+const exportAsJson = ({ elementId, player, eventList, dungeon }) => {
   const result = {
     player: {
       name: player.name,
@@ -59,4 +57,9 @@ export const exportAsJson = ({ elementId, player, eventList, dungeon }) => {
   })
 
   document.getElementById(elementId).href = window.URL.createObjectURL(blob)
+}
+
+module.exports = {
+  importAsJson,
+  exportAsJson
 }

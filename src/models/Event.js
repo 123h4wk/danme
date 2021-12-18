@@ -1,4 +1,6 @@
-import { getAsNumber } from '../utils'
+'use strict'
+
+const { getAsNumber } = require('../utils')
 
 let eventId = 0
 
@@ -87,4 +89,4 @@ class Event {
   }
 }
 
-export default Event
+module.exports = Event

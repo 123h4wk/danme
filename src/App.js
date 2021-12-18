@@ -1,7 +1,8 @@
-import m from 'mithril'
+'use strict'
 
-import { range } from './utils'
-import { exportAsJson, importAsJson } from './features/save'
+const m = require('mithril')
+const { range } = require('./utils')
+const { exportAsJson, importAsJson } = require('./features/save')
 
 const App = ({ attrs }) => {
   const { player, eventList, dungeon } = attrs
@@ -272,4 +273,4 @@ const App = ({ attrs }) => {
   return { view }
 }
 
-export default App
+module.exports = App

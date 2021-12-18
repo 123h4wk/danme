@@ -1,9 +1,11 @@
-import { getAsNumber } from '../utils'
+'use strict'
+
+const { getAsNumber } = require('../utils')
 
 const DUNGEON_MAX_STEPS = 500
 const SLIP_DAMAGE_RATE = 0.05
 
-export default class Dungeon {
+class Dungeon {
   constructor({ player, eventList }) {
     this.player = player
     this.eventList = eventList
@@ -168,3 +170,5 @@ export default class Dungeon {
     log.content += `\n最終回の${this.lastFloor}階に到達！\n${this.player.name}はダンジョンの攻略に成功した！！`
   }
 }
+
+module.exports = Dungeon

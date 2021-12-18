@@ -1,12 +1,14 @@
-import './styles/index.css'
+'use strict'
 
-import m from 'mithril'
+require('./styles/index.css')
 
-import App from './App'
-import Player from './models/Player'
-import Event from './models/Event'
-import EventList from './models/EventList'
-import Dungeon from './models/Dungeon'
+const m = require('mithril')
+
+const App = require('./App')
+const Player = require('./models/Player')
+const Event = require('./models/Event')
+const EventList = require('./models/EventList')
+const Dungeon = require('./models/Dungeon')
 
 const appElement = document.createDocumentFragment()
 
