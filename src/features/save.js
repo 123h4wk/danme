@@ -2,7 +2,7 @@
 
 const Event = require('../models/Event')
 
-const importAsJson = (files, callback, { player, eventList, dungeon }) => {
+function importAsJson (files, callback, { player, eventList, dungeon }) {
   const file = files[0]
   const reader = new window.FileReader()
   reader.onload = () => {
@@ -30,7 +30,7 @@ const importAsJson = (files, callback, { player, eventList, dungeon }) => {
   reader.readAsText(file)
 }
 
-const exportAsJson = ({ elementId, player, eventList, dungeon }) => {
+function exportAsJson ({ elementId, player, eventList, dungeon }) {
   const result = {
     player: {
       name: player.name,

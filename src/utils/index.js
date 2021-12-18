@@ -1,9 +1,10 @@
 'use strict'
 
-const getAsNumber = (val, defaultNumber = 0) =>
-  isNaN(Number(val)) ? defaultNumber : Number(val)
+function getAsNumber (val, defaultNumber = 0) {
+  return isNaN(Number(val)) ? defaultNumber : Number(val)
+}
 
-const range = (start, end) => {
+function range (start, end) {
   const result = []
   for (let i = start; i <= end; i++) {
     result.push(i)

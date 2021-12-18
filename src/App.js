@@ -4,26 +4,28 @@ const m = require('mithril')
 const { range } = require('./utils')
 const { exportAsJson, importAsJson } = require('./features/save')
 
-const App = ({ attrs }) => {
+function App ({ attrs }) {
   const { player, eventList, dungeon } = attrs
 
-  const handleDeleteButtonClick = (eventId) => {
+  function handleDeleteButtonClick (eventId) {
     const ok = window.confirm('このイベントを削除しますか？')
     if (ok) eventList.remove(eventId)
   }
 
-  const handleFileUpload = (files) =>
+  function handleFileUpload (files) {
     importAsJson(files, m.redraw, { player, eventList, dungeon })
+  }
 
-  const convertNewLineIntoBrTag = (str) =>
-    str
+  function convertNewLineIntoBrTag (str) {
+    return str
       .split('\n')
       .join('_br_')
       .split('_')
       .map((v) => (v === 'br' ? m('br') : m('span', v)))
+  }
 
-  const view = () =>
-    m('div.app', [
+  function view () {
+    return m('div.app', [
       m(
         'img.bg-image.bg-image--left[src=./img/danme-chan.png][alt=danme-chan]'
       ),
@@ -269,7 +271,7 @@ const App = ({ attrs }) => {
         ])
       ])
     ])
-
+  }
   return { view }
 }
 
