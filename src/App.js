@@ -1,8 +1,8 @@
 'use strict'
 
 const m = require('mithril')
-const { range } = require('./utils')
 const { exportAsJson, importAsJson } = require('./features/save')
+const EventCard = require('./components/EventCard')
 
 function App ({ attrs }) {
   const { player, eventList, dungeon } = attrs
@@ -26,18 +26,14 @@ function App ({ attrs }) {
 
   function view () {
     return m('div.app', [
-      m(
-        'img.bg-image.bg-image--left[src=./img/danme-chan.png][alt=danme-chan]'
-      ),
+      m('img.bg-image.bg-image--left[src=./img/danme-chan.png][alt=danme-chan]'),
       m('img.bg-image.bg-image--right[src=./img/maou-chan.png][alt=maou-chan]'),
-      m('div.container', [
-        m('div.container__section', [
+      m('main.container', [
+        m('section.container__section', [
           m('img.image[src=./img/danme.png][alt=top-image]')
         ]),
-        m('details.container__section.card[open]', [
-          m('summary.no-list-style.card__header', [
-            m('img.image.image--clickable[src=./img/edit.png][alt=edit]')
-          ]),
+        m('section.container__section.card', [
+          m('img.image[src=./img/edit.png][alt=edit]'),
           m('div.card__body', [
             m('div.horizon.card__section', [
               m(
@@ -105,131 +101,12 @@ function App ({ attrs }) {
             ]),
             m('div.card__section.form', [
               m('p.form__title', 'イベント設定'),
-              eventList.items.map((item) =>
-                m(
-                  'div.card__inner-section.card__dimple',
-                  {
-                    key: item.id
-                  },
-                  [
-                    m('div.form-control', [
-                      m('label.form-control__label', '内容'),
-                      m(
-                        'textarea.form-control__input.form-control__textarea[rows=3]',
-                        {
-                          value: item.content,
-                          onchange: (e) => item.setContent(e.target.value)
-                        }
-                      )
-                    ]),
-                    m('div.form-control.row', [
-                      m('div.row__item', [
-                        m('label.form-control__label', 'HP増減'),
-                        m('div.form-control__horizon-group', [
-                          m('input.form-control__input[type=text]', {
-                            value: item.hpChange1,
-                            onchange: (e) => item.setHpChange1(e.target.value)
-                          }),
-                          m('span.form-control__delimiter', '～'),
-                          m('input.form-control__input[type=text]', {
-                            value: item.hpChange2,
-                            onchange: (e) => item.setHpChange2(e.target.value)
-                          })
-                        ])
-                      ]),
-                      m('div.row__item', [
-                        m('label.form-control__label', 'MP増減'),
-                        m('div.form-control__horizon-group', [
-                          m('input.form-control__input[type=text]', {
-                            value: item.mpChange1,
-                            onchange: (e) => item.setMpChange1(e.target.value)
-                          }),
-                          m('span.form-control__delimiter', '～'),
-                          m('input.form-control__input[type=text]', {
-                            value: item.mpChange2,
-                            onchange: (e) => item.setMpChange2(e.target.value)
-                          })
-                        ])
-                      ])
-                    ]),
-                    m('div.form-control.row', [
-                      m('div.row__item', [
-                        m('div.form-control__label', '持続ターン'),
-                        m(
-                          'select.form-control__input',
-                          {
-                            onchange: (e) => item.setRemaining(e.target.value)
-                          },
-                          range(1, 20).map((num) =>
-                            m(
-                              'option',
-                              {
-                                value: num,
-                                selected: item.remaining === num
-                              },
-                              num
-                            )
-                          )
-                        )
-                      ]),
-
-                      m('div.row__item', [
-                        m('div.form-control__label', '発生確率'),
-                        m(
-                          'select.form-control__input',
-                          {
-                            onchange: (e) => item.setProbability(e.target.value)
-                          },
-                          item
-                            .getProbabilityValueList()
-                            .reverse()
-                            .map((probability) =>
-                              m(
-                                'option',
-                                {
-                                  value: probability,
-                                  selected: item.probability === probability
-                                },
-                                item.getProbabilityLabel(probability)
-                              )
-                            )
-                        )
-                      ])
-                    ]),
-                    m('div.form-control.row', [
-                      m('div.row__item', [
-                        m('label.form-control__label', 'アイコン'),
-                        m('div.form-control__image-group', [
-                          item.getImageTypeValueList().map((imageType) =>
-                            m('img.form-control__image[alt=event-icon]', {
-                              class:
-                                item.imageType === imageType
-                                  ? 'form-control__image--selected'
-                                  : '',
-                              onclick: () => item.setImageType(imageType),
-                              src: item.getImageSrc(imageType)
-                            })
-                          )
-                        ])
-                      ]),
-                      m('div.row__item', [
-                        m(
-                          'button.button.button--outline[type=button]',
-                          {
-                            onclick: () => handleDeleteButtonClick(item.id)
-                          },
-                          'イベント削除'
-                        )
-                      ])
-                    ])
-                  ]
-                )
-              ),
+              eventList.items.map(item => m(EventCard, { key: item.id, item, handleDeleteButtonClick })),
               m('div.card__inner-section', [
                 m(
                   'button.button.button--outline[type=button]',
                   {
-                    onclick: () => eventList.add()
+                    onclick: () => eventList.add({ content: 'イベント内容' })
                   },
                   'イベント追加'
                 )
@@ -237,16 +114,16 @@ function App ({ attrs }) {
             ])
           ])
         ]),
-        m('details.container__section.card[open]', [
-          m('summary.no-list-style.card__header', [
-            m('img.image.image--clickable[src=./img/enter.png][alt=enter]')
-          ]),
+        m('section.container__section.card', [
+          m('img.image[src=./img/enter.png][alt=enter]'),
           m('div.card__body', [
             m('div.card__section', [
               m(
                 'button.button.button--outline.button--fullwidth[type=button]',
                 {
-                  onclick: () => dungeon.execute()
+                  onclick: (e) => {
+                    dungeon.execute().then(m.redraw)
+                  }
                 },
                 '結果を表示する'
               )

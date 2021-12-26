@@ -7,8 +7,8 @@ class EventList {
     this.items = initialEvents
   }
 
-  add (newEvent) {
-    const event = newEvent ?? new Event()
+  add (props = {}) {
+    const event = new Event(props)
     this.items = [...this.items, event]
   }
 

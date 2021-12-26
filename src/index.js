@@ -17,8 +17,8 @@ const player = new Player()
 const eventList = new EventList([
   new Event({
     content: 'サンプルイベント',
-    hpChange1: 0,
-    hpChange2: 0,
+    hpChange1: -10,
+    hpChange2: -20,
     mpChange1: -10,
     mpChange2: -10,
     remaining: 1,
@@ -27,7 +27,7 @@ const eventList = new EventList([
   })
 ])
 
-const dungeon = new Dungeon({ player, eventList })
+const dungeon = new Dungeon({ player, eventList, lastFloor: 15 })
 
 m.mount(appElement, {
   view: () =>

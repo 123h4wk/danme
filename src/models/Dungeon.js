@@ -6,14 +6,14 @@ const DUNGEON_MAX_STEPS = 500
 const SLIP_DAMAGE_RATE = 0.05
 
 class Dungeon {
-  constructor ({ player, eventList }) {
+  constructor ({ player, eventList, lastFloor }) {
     this.player = player
     this.eventList = eventList
     this.eventPool = []
     this.remainingPool = []
     this.logs = []
     this.steps = 1
-    this.lastFloor = 15
+    this.lastFloor = lastFloor
   }
 
   setLastFloor (val) {
@@ -26,7 +26,12 @@ class Dungeon {
     this.remainingPool = []
     this.logs = []
     this.steps = 1
-    this._next()
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this._next()
+        resolve()
+      }, 200)
+    })
   }
 
   _createEventPool () {
