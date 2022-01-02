@@ -101,7 +101,7 @@ class EventCard {
                           value: probability,
                           selected: item.probability === probability
                         },
-                        item.getProbabilityLabel(probability)
+                        item.convertProbabilityValueIntoTextJa(probability)
                       )
                     )
                 )

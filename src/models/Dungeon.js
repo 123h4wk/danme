@@ -4,6 +4,7 @@ const { getAsNumber } = require('../utils')
 
 const DUNGEON_MAX_STEPS = 500
 const SLIP_DAMAGE_RATE = 0.05
+const WAIT_EXECUTE_TIME = 200 // ms
 
 class Dungeon {
   constructor ({ player, eventList, lastFloor }) {
@@ -29,8 +30,8 @@ class Dungeon {
     return new Promise(resolve => {
       setTimeout(() => {
         this._next()
-        resolve()
-      }, 200)
+        resolve(true)
+      }, WAIT_EXECUTE_TIME)
     })
   }
 
@@ -131,7 +132,7 @@ class Dungeon {
     }
 
     // 失敗２：探索階が深すぎた場合
-    if (this.steps > DUNGEON_MAX_STEPS) {
+    if (this.steps >= DUNGEON_MAX_STEPS) {
       this._writeGetLostLog(log)
       this.logs.push(log)
       return

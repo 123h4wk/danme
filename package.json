@@ -7,6 +7,7 @@
   "author": "123h4wk",
   "scripts": {
     "lint": "standard --fix",
+    "test": "jest",
     "dev": "esbuild src/index.js --servedir=public --outdir=public/app --sourcemap --bundle",
     "build": "rm -rf dist && cp -r public dist && esbuild src/index.js --outdir=dist/app --minify --bundle"
   },
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "esbuild": "^0.13.2",
+    "jest": "^27.4.5",
+    "mithril-query": "^4.0.1",
     "standard": "^16.0.4"
   }
 }

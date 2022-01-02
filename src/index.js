@@ -10,8 +10,6 @@ const Event = require('./models/Event')
 const EventList = require('./models/EventList')
 const Dungeon = require('./models/Dungeon')
 
-const appElement = document.createDocumentFragment()
-
 const player = new Player()
 
 const eventList = new EventList([
@@ -29,13 +27,12 @@ const eventList = new EventList([
 
 const dungeon = new Dungeon({ player, eventList, lastFloor: 15 })
 
-m.mount(appElement, {
-  view: () =>
-    m(App, {
+m.mount(document.body, {
+  view () {
+    return m(App, {
       player,
       eventList,
       dungeon
     })
+  }
 })
-
-document.body.appendChild(appElement)

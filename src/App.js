@@ -43,21 +43,16 @@ function App ({ attrs }) {
                   onchange: (e) => handleFileUpload(e.target.files)
                 })
               ),
-              m(
-                'a.horizon__item.button.button--outline',
-                {
-                  id: 'json-export',
-                  download: 'dungeon-data.json',
-                  onclick: () =>
-                    exportAsJson({
-                      elementId: 'json-export',
-                      player,
-                      eventList,
-                      dungeon
-                    })
-                },
-                'ダンジョンファイル書き出し'
-              )
+              m('a.horizon__item.button.button--outline', {
+                id: 'json-export',
+                download: 'dungeon-data.json',
+                onclick: () => exportAsJson({
+                  elementId: 'json-export',
+                  player,
+                  eventList,
+                  dungeon
+                })
+              }, 'ダンジョンファイル書き出し')
             ]),
             m('div.card__section.form', [
               m('div.form__title', 'プレイヤー設定'),
